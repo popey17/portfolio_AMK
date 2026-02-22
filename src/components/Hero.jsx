@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
-import './Hero.scss';
+import '../assets/scss/Hero.scss';
 
 const Hero = () => {
   const contentRef = useRef(null);

@@ -1,5 +1,5 @@
 import { Github, Linkedin, Twitter, Maximize2 } from 'lucide-react';
-import './Footer.scss';
+import '../assets/scss/Footer.scss';
 
 const Footer = () => {
   return (

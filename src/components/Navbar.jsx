@@ -1,6 +1,6 @@
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import './Navbar.scss';
+import '../assets/scss/Navbar.scss';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,7 @@ const Navbar = () => {
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         <div className="nav-brand">
-          <a href="#home" className="logo">Dev<span>Portfolio</span></a>
+          <a href="#home" className="logo">Aung <span>Myat K.</span></a>
         </div>
         
         <nav className={`nav-links ${isOpen ? 'open' : ''}`}>
