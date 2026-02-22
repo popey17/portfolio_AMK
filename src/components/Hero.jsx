@@ -23,7 +23,7 @@ const Hero = () => {
 
       <div className="container hero-content" ref={contentRef}>
         <div className="hero-text-block">
-          <h1>I'm Aung<br />Myat Kyaw,</h1>
+          <h1>I'm <span>Aung Myat Kyaw,</span></h1>
           <div className="hero-action-block">
             <p>Specializing in crafting websites to align with your brand identity while captivating and engaging your audience.</p>
             <div className="hero-actions">
