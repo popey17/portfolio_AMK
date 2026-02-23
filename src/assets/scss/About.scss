@@ -1,23 +1,20 @@
 .about-section {
   background: var(--bg-color);
+  position: relative;
+  z-index: 100; /* Covering layer */
+  padding-top: 10rem; /* Give space for the enter transition */
 }
 
 .section-title {
-  font-size: 3rem;
-  margin-bottom: 4rem;
-  position: relative;
-  display: inline-block;
+  font-size: clamp(3rem, 10vw, 8rem);
+  margin-bottom: 5rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  line-height: 0.9;
 }
 
-.section-title::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 50%;
-  height: 2px;
-  background: var(--accent-color);
-}
+/* Underline removed for cleaner look */
 
 .about-content {
   display: grid;

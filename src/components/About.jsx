@@ -7,16 +7,47 @@ gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
   const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const textRef = useRef(null);
+  const gridRef = useRef(null);
 
   useEffect(() => {
     const el = sectionRef.current;
-    gsap.fromTo(el,
-      { opacity: 0, y: 100 },
+    
+    // Parallax Title - moves slower
+    gsap.fromTo(titleRef.current,
+      { y: 50 },
+      {
+        y: -100,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        }
+      }
+    );
+
+    // Parallax Text - moves slightly faster
+    gsap.fromTo(textRef.current,
+      { y: 100 },
+      {
+        y: -50,
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        }
+      }
+    );
+
+    // Entrance fade for the whole content
+    gsap.fromTo([textRef.current, gridRef.current],
+      { opacity: 0 },
       {
         opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power3.out',
+        duration: 1.5,
         scrollTrigger: {
           trigger: el,
           start: 'top 80%',
@@ -28,9 +59,9 @@ const About = () => {
   return (
     <section id="about" className="section about-section" ref={sectionRef}>
       <div className="container">
-        <h2 className="section-title">About Me</h2>
+        <h2 className="section-title" ref={titleRef}>About Me</h2>
         <div className="about-content">
-          <div className="about-text">
+          <div className="about-text" ref={textRef}>
             <p>
               I specialize in crafting websites to align with your brand identity while captivating and engaging your audience. 
               My goal is to create digital experiences that are both meaningful and memorable, ensuring a lasting impression on every visitor.
@@ -39,7 +70,7 @@ const About = () => {
               In addition to front-end development, I also have knowledge in back-end technologies and cloud services.
             </p>
           </div>
-          <div className="skills-grid">
+          <div className="skills-grid" ref={gridRef}>
             <div className="skill-item">Frontend / React / GSAP</div>
             <div className="skill-item">Backend / Node / SQL</div>
             <div className="skill-item">UI/UX / Styling</div>

@@ -1,42 +1,46 @@
-import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import '../assets/scss/Navbar.scss';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Scroll handling could be added here if needed
   }, []);
 
-  return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container nav-container">
-        <div className="nav-brand">
-          <a href="#home" className="logo">Aung <span>Myat K.</span></a>
-        </div>
-        
-        <nav className={`nav-links ${isOpen ? 'open' : ''}`}>
-          <a href="#services" onClick={() => setIsOpen(false)}>Services</a>
-          <a href="#projects" onClick={() => setIsOpen(false)}>Projects</a>
-          <a href="#experience" onClick={() => setIsOpen(false)}>Work Process</a>
-          <a href="#about" onClick={() => setIsOpen(false)}>About Me</a>
-        </nav>
+  const toggleMenu = () => setIsOpen(!isOpen);
 
-        <div className="nav-actions">
-          <a href="#contact" className="nav-contact-btn" onClick={() => setIsOpen(false)}>Let's Talk</a>
-          <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+  return (
+    <>
+      <header className={`navbar-v2 ${isOpen ? 'menu-open' : ''}`}>
+        <div className="nav-container">
+          <div className="nav-brand">
+            <a href="#home" className="logo-v2" onClick={() => setIsOpen(false)}>
+              DIALECT
+            </a>
+          </div>
+          
+          <div className="nav-actions">
+            <button className="menu-toggle-btn" onClick={toggleMenu}>
+              {isOpen ? '[ CLOSE ]' : '[ MENU ]'}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Full Screen Menu Overlay */}
+      <div className={`menu-overlay ${isOpen ? 'active' : ''}`}>
+        <div className="menu-content">
+          <nav className="overlay-links">
+            <a href="#home" onClick={toggleMenu} data-text="HOME">HOME</a>
+            <a href="#about" onClick={toggleMenu} data-text="STUDIO">STUDIO</a>
+            <a href="#projects" onClick={toggleMenu} data-text="PROJECTS">PROJECTS</a>
+            <a href="#experience" onClick={toggleMenu} data-text="LABS">LABS</a>
+            <a href="#contact" onClick={toggleMenu} data-text="CONTACT">CONTACT</a>
+          </nav>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 
